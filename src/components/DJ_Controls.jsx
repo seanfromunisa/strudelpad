@@ -1,14 +1,6 @@
 function DJControls({ defaultVolume, onVolumeChange, defaultCpm, onChange }) {
     return (
         <>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="cpm_label">setCPM</span>
-                <input type="text" className="form-control" defaultValue={defaultCpm} onChange={onChange} id="cpm_text_input" placeholder="120" aria-label="cpm" aria-describedby="cpm_label" />
-            </div>
-
-            <label htmlFor="volume_range" className="form-label">Volume</label>
-            <input type="range" className="form-range" defaultValue={defaultVolume} onMouseUp={onVolumeChange} min="0" max="1" step="0.01" id="volume_range" />
-
             <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="b1"/>
                 <label className="form-check-label" htmlFor="b1">
@@ -32,6 +24,20 @@ function DJControls({ defaultVolume, onVolumeChange, defaultCpm, onChange }) {
                 <label className="form-check-label" htmlFor="d2">
                         Drums2
                     </label>
+            </div>
+            <div style={{ marginLeft: "20px"}}>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" checked />
+                    <label class="form-check-label" for="radioDefault1">
+                        Drum Type 1
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" />
+                    <label class="form-check-label" for="radioDefault2">
+                        Drum Type 2
+                    </label>
+                </div>
             </div>
         </>
   );

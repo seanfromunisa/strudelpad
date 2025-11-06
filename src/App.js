@@ -13,6 +13,9 @@ import DJControls from './components/DJ_Controls';
 import PlayButtons from './components/PlayButtons';
 import ProcButtons from './components/ProcButtons';
 import PreprocessTextArea from './components/PreprocessTextArea';
+import UIControl from './components/UIControl';
+import Volume from './components/Volume';
+import CPM from './components/CPM';
 
 let globalEditor = null;
 
@@ -83,11 +86,15 @@ export default function StrudelDemo() {
 
     const [cpm, setCpm] = useState(120);
 
-    //useEffect(() => {
-    //}, [songText, volume])
+    useEffect(() => {
+        setSongText(songText.replaceAll("{VOLUME}", volume))
+        globalEditor.setCode(songText);
+    }, [songText, volume])
 
-    //useEffect(() => {
-    //}, [songText, cpm])
+    useEffect(() => {
+        setSongText(songText.replaceAll("{CPM}", cpm))
+        globalEditor.setCode(songText);
+    }, [songText, cpm])
 
 useEffect(() => {
 
@@ -127,9 +134,7 @@ useEffect(() => {
         //Proc()
     }
     globalEditor.setCode(songText);
-    setSongText(songText.replaceAll("{CPM}", cpm))
-    setSongText(songText.replaceAll("{VOLUME}", volume))
-}, [songText, cpm, volume]);
+}, [songText]);
 
 
 return (
@@ -138,6 +143,11 @@ return (
         <main>
 
             <div className="container-fluid">
+                <div className="row">
+                    <div col-3>
+                        <UIControl />
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
@@ -156,7 +166,9 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJControls defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} defaultCpm={cpm} onChange={(e) => setCpm(e.target.value)} />
+                        <CPM defaultCpm={cpm} onChange={(e) => setCpm(e.target.value)} />
+                        <Volume defaultVolume={volume} onChange={(e) => setVolume(e.target.value)} />
+                        <DJControls/>
                     </div>
                 </div>
             </div>
