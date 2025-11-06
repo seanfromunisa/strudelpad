@@ -41,61 +41,59 @@ const arpeggiator2 = [
 const pattern = 0
 const bass = 0
 
-{B1}bassline:
+bassline:
 note(pick(basslines, bass))
 .sound("supersaw")
 .postgain(2)
 .room(0.6)
 .lpf(700)
-.room(0.4)
+.room(0.4).gain(1*{VOLUME})
 .postgain(pick(gain_patterns, pattern))
 
 
-{A1}main_arp: 
+main_arp: 
 note(pick(arpeggiator1, "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")
 .room(0.6)
-.lpenv(3.3)
+.lpenv(3.3).gain(1*{VOLUME})
 .postgain(pick(gain_patterns, pattern))
 
 
-{D1}drums:
+drums:
 stack(
   s("tech:5")
   .postgain(6)
   .pcurve(2)
-  .pdec(1)
+  .pdec(1).gain(1*{VOLUME})
   .struct(pick(drum_structure, pattern)),
 
   s("sh").struct("[x!3 ~!2 x!10 ~]")
   .postgain(0.5).lpf(7000)
   .bank("RolandTR808")
-  .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6),
+  .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6*{VOLUME}),
 
   s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8 *2")
-  .bank("[KorgDDM110, OberheimDmx]").speed(1.2)
+  .bank("[KorgDDM110, OberheimDmx]").speed(1.2).gain(1*{VOLUME})
   .postgain(.25),
 )
 
-{D2}drums2: 
+drums2: 
 stack(
-  s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2),
+  s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2*{VOLUME}),
   s("hh").struct("x*16").bank("RolandTR808")
-  .gain(0.6)
+  .gain(0.6*{VOLUME})
   .jux(rev)
   .room(sine.range(0.1,0.4))
   .postgain(0.5),
   
   s("[psr:[2|5|6|7|8|9|12|24|25]*16]?0.1")
-  .gain(0.1)
+  .gain(0.1*{VOLUME})
   .postgain(pick(gain_patterns, pattern))
   .hpf(1000)
   .speed(0.5)
   .rarely(jux(rev)),
-
-  all(x = > x.gain({VOLUME}))
 
 )
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY

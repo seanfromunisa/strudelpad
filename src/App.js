@@ -79,6 +79,16 @@ export default function StrudelDemo() {
 
     const [songText, setSongText] = useState(stranger_tune)
 
+    const [volume, setVolume] = useState(1);
+
+    const [cpm, setCpm] = useState(120);
+
+    //useEffect(() => {
+    //}, [songText, volume])
+
+    //useEffect(() => {
+    //}, [songText, cpm])
+
 useEffect(() => {
 
     if (!hasRun.current) {
@@ -117,7 +127,9 @@ useEffect(() => {
         //Proc()
     }
     globalEditor.setCode(songText);
-}, [songText]);
+    setSongText(songText.replaceAll("{CPM}", cpm))
+    setSongText(songText.replaceAll("{VOLUME}", volume))
+}, [songText, cpm, volume]);
 
 
 return (
@@ -128,7 +140,7 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <PreprocessTextArea dafaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
+                        <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
                     <div className="col-md-4">
                         <nav>
@@ -144,7 +156,7 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJControls/>
+                        <DJControls defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} defaultCpm={cpm} onChange={(e) => setCpm(e.target.value)} />
                     </div>
                 </div>
             </div>
