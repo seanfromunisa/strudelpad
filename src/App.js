@@ -58,9 +58,9 @@ export function Proc() {
 export function ProcessText(match, ...args) {
 
     let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
+    //if (document.getElementById('flexRadioDefault2').checked) {
+    //    replace = "_"
+    //}
 
     return replace
 }
@@ -121,7 +121,6 @@ return (
                         <PreprocessTextArea/>
                     </div>
                     <div className="col-md-4">
-
                         <nav>
                             <ProcButtons/>
                             <br />
