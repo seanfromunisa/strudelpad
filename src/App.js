@@ -17,6 +17,7 @@ import UIControl from './components/UIControl';
 import Volume from './components/Volume';
 import CPM from './components/CPM';
 import RadioDJ from './components/RadioDJ';
+import SaveLoadButtons from './components/SaveLoadButtons';
 
 let globalEditor = null;
 
@@ -73,6 +74,7 @@ export default function StrudelDemo() {
         globalEditor.stop()
     }
 
+
     const [songText, setSongText] = useState(stranger_tune)
 
     const [volume, setVolume] = useState(1);
@@ -90,6 +92,40 @@ export default function StrudelDemo() {
     const [d2Checked, setD2Checked] = useState(true);
 
     const [drumType, setDrumType] = useState("RolandTR808");
+
+    const saveState = () => {
+
+        const currentState = {
+            saveSongText: songText,
+            saveVolume: volume,
+            saveCpm: cpm,
+            saveB1Checked: b1Checked,
+            saveA1Checked: a1Checked,
+            saveD1Checked: d1Checked,
+            saveD2Checked: d2Checked,
+            saveDrumType: drumType,
+        }
+
+        localStorage.setItem(
+            "savedState",
+            JSON.stringify(this.currentState)
+        );
+    }
+
+    const loadState = () => {
+        let data = localStorage.getItem("savedState");
+        if (data !== undefined) {
+            const loadedData = JSON.parse(data);
+            setSongText(loadedData.saveSongText);
+            setVolume(loadedData.saveVolume);
+            setCpm(loadedData.saveCpm);
+            setB1Checked(loadedData.saveB1Checked);
+            setA1Checked(loadedData.saveA1Checked);
+            setD1Checked(loadedData.saveD1Checked);
+            setD2Checked(loadedData.saveD2Checked);
+            setDrumType(loadedData.saveDrumType);
+        }
+    }
 
     useEffect(() => {
 
@@ -155,7 +191,12 @@ return (
                     </div>
                     <div className="col-md-4">
                         <nav>
-                            <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
+                            <div>
+                                <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
+                            </div>
+                            <div>
+                                <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
+                            </div>
                         </nav>
                     </div>
                 </div>
