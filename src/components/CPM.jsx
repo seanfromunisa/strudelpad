@@ -1,4 +1,5 @@
 function CPM({ defaultValue, onChange }) {
+    // Text field controlling the cycles per minute
   return (
       <>
           <div className="input-group mb-3">

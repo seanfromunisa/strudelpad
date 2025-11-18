@@ -1,4 +1,5 @@
 function DJControls({ b1Checked, setB1Checked, a1Checked, setA1Checked, d1Checked, setD1Checked, d2Checked, setD2Checked }) {
+    // Checkbox controls enabling the intrument audibility
     return (
         <>
             <div className="form-check">

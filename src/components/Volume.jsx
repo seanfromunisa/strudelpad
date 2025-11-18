@@ -1,4 +1,5 @@
 function Volume({ defaultVolume, onVolumeChange }) {
+    // Volume slider controlling the gain
   return (
       <>
           <label htmlFor="volume_range" className="form-label">Volume</label>

@@ -1,77 +1,37 @@
-# Getting Started with Create React App
+### Controls
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Processing Text
+The text box in the top left is the full processed text that becomes the music the Strudel interface interperets and plays.
 
-## Available Scripts
+Any changes to this will be made instantly to the running program, though do be cautious as this text also holds the variables allowing the other controls' functionality.
 
-In the project directory, you can run:
+# Save and Load
+These buttons are intended to Save all current settings as a JSON object and be able to load them thereafter from local storage, but the functionality is subpar at this time.
 
-### `npm start`
+# Play and Stop
+Play and Stop are somewhat self explanitory, allowing the user to play and stop the music. Some control changes will only execute after playing the music.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# CPM
+This field refers to the cycles per minute and relates to the tempo of the music. This will only update on play.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Volume
+This is the volume slider, adjusting in real time how loud or quiet the song will play across all instruments.
 
-### `npm test`
+# Instrument Checks
+These checkboxes refer to the audibility of the instruments and whether they are muted. A checked box means the instrument is still playing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Drum Types
+These radio controls switch the main drum type of the two drum sets in the current song. The initally checked type is the original.
 
-### `npm run build`
+# Spectre Visualisation
+In the processed text, under the Bass and Arp are Spectre visuals, showing musical patterns as they play. These are the only two the visual looked interesting under.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
 
 ### AI Usage
+In this assignment I used AI for the first time to help me with a functionality problem. I'm not sure how to use it efficiently yet.
 
 # Sean
 i'm working on a react js assignment. how do i check for a checked checkbox in a seperate checkbox component?

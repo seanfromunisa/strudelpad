@@ -1,4 +1,5 @@
 function RadioDJ({ onType1, onType2, onType3, onType4 }) {
+    // Radio buttons controlling the drum types
     return (
         <>
             <div style={{ marginLeft: "20px" }}>

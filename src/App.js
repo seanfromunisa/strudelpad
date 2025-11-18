@@ -19,25 +19,29 @@ import CPM from './components/CPM';
 import RadioDJ from './components/RadioDJ';
 import SaveLoadButtons from './components/SaveLoadButtons';
 
+//Establishing globalEditor variable
 let globalEditor = null;
-
-const handleD3Data = (event) => {
-    console.log(event.detail);
-};
 
 export default function StrudelDemo() {
 
+    //Establishing that the Strudel interface has not been initialized
     const hasRun = useRef(false);
 
+    //Processing of variables each time the program is played
     const handlePlay = () => {
+
+        //Using stand in variable to represent songText. If songText is not established, use the default song text
         let outputText = songText
         if (outputText == null) {
             outputText = stranger_tune;
         }
+
+        //Replace volume, cpm, and drum type variables across the song text with their set values
         outputText = outputText.replaceAll("{VOLUME}", volume);
         outputText = outputText.replaceAll("{CPM}", cpm);
         outputText = outputText.replaceAll("{DRUMTYPE}", drumType);
 
+        //Check which radio buttons have been selected. If any are selected, keep their values empty. For the rest, replace in song text with "_" to mute their respective instrument
         if (!b1Checked) {
             outputText = outputText.replaceAll("{B1}", "_");
         }
@@ -66,15 +70,17 @@ export default function StrudelDemo() {
             outputText = outputText.replaceAll("{D2}", "");
         }
 
+        //Having refactored all of the song text, process it into strudel and execute
         globalEditor.setCode(outputText);
         globalEditor.evaluate()
     }
 
+    //Stop the song
     const handleStop = () => {
         globalEditor.stop()
     }
 
-
+    //Establishing the variable getters and setters, as well as their default values
     const [songText, setSongText] = useState(stranger_tune)
 
     const [volume, setVolume] = useState(1);
@@ -93,8 +99,10 @@ export default function StrudelDemo() {
 
     const [drumType, setDrumType] = useState("RolandTR808");
 
+    //JSON object saving function
     const saveState = () => {
 
+        //Create object holding all current variable values
         const currentState = {
             saveSongText: songText,
             saveVolume: volume,
@@ -106,14 +114,20 @@ export default function StrudelDemo() {
             saveDrumType: drumType,
         }
 
+        //Store these into local storage
         localStorage.setItem(
             "savedState",
             JSON.stringify(this.currentState)
         );
     }
 
+    //JSON object loading function
     const loadState = () => {
+
+        //Transfer saved object data into placeholder variable
         let data = localStorage.getItem("savedState");
+
+        //If there is an object to speak of, reconstruct the data and set the appropriate variables
         if (data !== undefined) {
             const loadedData = JSON.parse(data);
             setSongText(loadedData.saveSongText);
@@ -127,6 +141,7 @@ export default function StrudelDemo() {
         }
     }
 
+    //Each time any of the dependant variables are set/changed and the song is currently playing, process the variables again
     useEffect(() => {
 
         if (state === "play") {
@@ -135,10 +150,10 @@ export default function StrudelDemo() {
 
     }, [volume, b1Checked, a1Checked, d1Checked, d2Checked, drumType])
 
+//Initializing of the Strudel interface
 useEffect(() => {
 
     if (!hasRun.current) {
-        document.addEventListener("d3Data", handleD3Data);
         console_monkey_patch();
         hasRun.current = true;
         //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
@@ -173,18 +188,13 @@ useEffect(() => {
     globalEditor.setCode(songText);
 }, [songText]);
 
-
+//Body of the page
 return (
     <div>
-        <h2>Strudel Demo</h2>
+        <h2 style={{ color: "hotpink", textAlign: "center", fontSize: "xx-large" }}>StrudelPad</h2>
         <main>
 
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-3">
-                        <UIControl />
-                    </div>
-                </div>
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
@@ -192,10 +202,11 @@ return (
                     <div className="col-md-4">
                         <nav>
                             <div>
-                                <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
-                            </div>
-                            <div>
                                 <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
+                            </div>
+                            <br />
+                            <div>
+                                <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
                             </div>
                         </nav>
                     </div>
@@ -206,18 +217,26 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
-                        <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
-                        <DJControls
-                            b1Checked={b1Checked} setB1Checked={setB1Checked}
-                            a1Checked={a1Checked} setA1Checked={setA1Checked}
-                            d1Checked={d1Checked} setD1Checked={setD1Checked}
-                            d2Checked={d2Checked} setD2Checked={setD2Checked}
-                        />
-                        <RadioDJ
-                            onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
-                            onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
-                        />
+
+                        <div className="row">
+                            <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
+                            <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
+                        </div>
+                        <br/>
+                        <div className="row">
+                            <DJControls
+                                b1Checked={b1Checked} setB1Checked={setB1Checked}
+                                a1Checked={a1Checked} setA1Checked={setA1Checked}
+                                d1Checked={d1Checked} setD1Checked={setD1Checked}
+                                d2Checked={d2Checked} setD2Checked={setD2Checked}
+                            />
+                        </div>
+                        <div className="row">
+                            <RadioDJ
+                                onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
+                                onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

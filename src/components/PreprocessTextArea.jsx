@@ -1,4 +1,5 @@
 function PreprocessTextArea({ defaultValue, onChange }) {
+    // Text field for editing the song text to be processed
   return (
       <>
           <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
