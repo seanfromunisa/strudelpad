@@ -26,15 +26,15 @@ function DJControls({ defaultVolume, onVolumeChange, defaultCpm, onChange }) {
                     </label>
             </div>
             <div style={{ marginLeft: "20px"}}>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" checked />
-                    <label class="form-check-label" for="radioDefault1">
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault1" defaultChecked />
+                    <label className="form-check-label" htmlFor="radioDefault1">
                         Drum Type 1
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" />
-                    <label class="form-check-label" for="radioDefault2">
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault2" />
+                    <label className="form-check-label" htmlFor="radioDefault2">
                         Drum Type 2
                     </label>
                 </div>

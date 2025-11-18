@@ -1,8 +1,8 @@
 function ReactComponent() {
   return (
       <>
-          <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off"/>
-              <label class="btn btn-primary" for="btn-check">Dark Mode</label>
+          <input type="checkbox" className="btn-check" id="btn-check" autoComplete="off"/>
+              <label className="btn btn-primary" htmlFor="btn-check">Dark Mode</label>
       </>
   );
 }
