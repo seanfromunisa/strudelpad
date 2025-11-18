@@ -16,57 +16,13 @@ import PreprocessTextArea from './components/PreprocessTextArea';
 import UIControl from './components/UIControl';
 import Volume from './components/Volume';
 import CPM from './components/CPM';
+import RadioDJ from './components/RadioDJ';
 
 let globalEditor = null;
 
 const handleD3Data = (event) => {
     console.log(event.detail);
 };
-
-//export function SetupButtons() {
-
-//    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-//    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-//    document.getElementById('process').addEventListener('click', () => {
-//        Proc()
-//    }
-//    )
-//    document.getElementById('process_play').addEventListener('click', () => {
-//        if (globalEditor != null) {
-//            Proc()
-//            globalEditor.evaluate()
-//        }
-//    }
-//    )
-//}
-
-
-
-//export function ProcAndPlay() {
-//    if (globalEditor != null && globalEditor.repl.state.started == true) {
-//        console.log(globalEditor)
-//        Proc()
-//        globalEditor.evaluate();
-//    }
-//}
-
-//export function Proc() {
-
-//    let proc_text = document.getElementById('proc').value
-//    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-//    ProcessText(proc_text);
-//    globalEditor.setCode(proc_text_replaced)
-//}
-
-//export function ProcessText(match, ...args) {
-
-//    let replace = ""
-//    //if (document.getElementById('flexRadioDefault2').checked) {
-//    //    replace = "_"
-//    //}
-
-//    return replace
-//}
 
 export default function StrudelDemo() {
 
@@ -132,6 +88,14 @@ export default function StrudelDemo() {
 
     const [d2Checked, setD2Checked] = useState(true);
 
+    const [drumt1Checked, setDrumt1Checked] = useState(true);
+
+    const [drumt2Checked, setDrumt2Checked] = useState(false);
+
+    const [drumt3Checked, setDrumt3Checked] = useState(false);
+
+    const [drumt4Checked, setDrumt4Checked] = useState(false);
+
     useEffect(() => {
 
         if (state === "play") {
@@ -174,8 +138,6 @@ useEffect(() => {
             });
             
         document.getElementById('proc').value = stranger_tune
-        //SetupButtons()
-        //Proc()
     }
     globalEditor.setCode(songText);
 }, [songText]);
@@ -215,6 +177,9 @@ return (
                             a1Checked={a1Checked} setA1Checked={setA1Checked}
                             d1Checked={d1Checked} setD1Checked={setD1Checked}
                             d2Checked={d2Checked} setD2Checked={setD2Checked}
+                        />
+                        <RadioDJ
+
                         />
                     </div>
                 </div>
