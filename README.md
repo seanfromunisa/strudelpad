@@ -28,6 +28,11 @@ In the processed text, under the Bass and Arp are Spectre visuals, showing music
 
 
 
+### Video Link
+Here is the demo of the page
+
+https://youtu.be/MvT3qZKz62c
+
 
 
 ### AI Usage
