@@ -80,28 +80,28 @@ export default function StrudelDemo() {
         outputText = outputText.replaceAll("{VOLUME}", volume);
         outputText = outputText.replaceAll("{CPM}", cpm);
 
-        if (b1Checked) {
+        if (!b1Checked) {
             outputText = outputText.replaceAll("{B1}", "_");
         }
         else {
             outputText = outputText.replaceAll("{B1}", "");
         }
 
-        if (a1Checked) {
+        if (!a1Checked) {
             outputText = outputText.replaceAll("{A1}", "_");
         }
         else {
             outputText = outputText.replaceAll("{A1}", "");
         }
 
-        if (d1Checked) {
+        if (!d1Checked) {
             outputText = outputText.replaceAll("{D1}", "_");
         }
         else {
             outputText = outputText.replaceAll("{D1}", "");
         }
 
-        if (d2Checked) {
+        if (!d2Checked) {
             outputText = outputText.replaceAll("{D2}", "_");
         }
         else {
@@ -124,13 +124,13 @@ export default function StrudelDemo() {
 
     const [state, setState] = useState("stop");
 
-    const [b1Checked, setB1Checked] = useState(false);
+    const [b1Checked, setB1Checked] = useState(true);
 
-    const [a1Checked, setA1Checked] = useState(false);
+    const [a1Checked, setA1Checked] = useState(true);
 
-    const [d1Checked, setD1Checked] = useState(false);
+    const [d1Checked, setD1Checked] = useState(true);
 
-    const [d2Checked, setD2Checked] = useState(false);
+    const [d2Checked, setD2Checked] = useState(true);
 
     useEffect(() => {
 
