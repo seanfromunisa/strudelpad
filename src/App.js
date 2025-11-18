@@ -87,13 +87,13 @@ export default function StrudelDemo() {
     const [cpm, setCpm] = useState(120);
 
     useEffect(() => {
-        setSongText(songText.replaceAll("{VOLUME}", volume))
-        globalEditor.setCode(songText);
+        setSongText(songText.replaceAll("{VOLUME}", volume));
+        //globalEditor.setCode(songText);
     }, [songText, volume])
 
     useEffect(() => {
-        setSongText(songText.replaceAll("{CPM}", cpm))
-        globalEditor.setCode(songText);
+        setSongText(songText.replaceAll("{CPM}", cpm));
+        //globalEditor.setCode(songText);
     }, [songText, cpm])
 
 useEffect(() => {
