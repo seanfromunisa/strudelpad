@@ -35,6 +35,7 @@ export default function StrudelDemo() {
         }
         outputText = outputText.replaceAll("{VOLUME}", volume);
         outputText = outputText.replaceAll("{CPM}", cpm);
+        outputText = outputText.replaceAll("{DRUMTYPE}", drumType);
 
         if (!b1Checked) {
             outputText = outputText.replaceAll("{B1}", "_");

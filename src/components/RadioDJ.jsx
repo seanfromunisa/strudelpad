@@ -4,28 +4,28 @@ function RadioDJ({ onType1, onType2, onType3, onType4 }) {
             <div style={{ marginLeft: "20px" }}>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault1"
-                        onClick={onType1} defaultChecked />
+                        onChange={onType1} defaultChecked />
                     <label className="form-check-label" htmlFor="radioDefault1">
                         RolandTR808
                     </label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault2"
-                        onClick={onType2} />
+                        onChange={onType2} />
                     <label className="form-check-label" htmlFor="radioDefault2">
                         AkaiLinn
                     </label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault3"
-                        onClick={onType3} />
+                        onChange={onType3} />
                     <label className="form-check-label" htmlFor="radioDefault3">
                         RhythmAce
                     </label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name="radioDefault" id="radioDefault4"
-                        onClick={onType4} />
+                        onChange={onType4} />
                     <label className="form-check-label" htmlFor="radioDefault4">
                         ViscoSpaceDrum
                     </label>

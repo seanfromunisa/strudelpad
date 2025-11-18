@@ -73,7 +73,7 @@ stack(
 
   s("sh").struct("[x!3 ~!2 x!10 ~]")
   .postgain(0.5).lpf(7000)
-  .bank("RolandTR808")
+  .bank("{DRUMTYPE}")
   .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6*{VOLUME}),
 
   s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8 *2")
@@ -83,8 +83,8 @@ stack(
 
 {D2}drums2:
 stack(
-  s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2*{VOLUME}),
-  s("hh").struct("x*16").bank("RolandTR808")
+  s("[~ hh]*4").bank("{DRUMTYPE}").room(0.3).speed(0.75).gain(1.2*{VOLUME}),
+  s("hh").struct("x*16").bank("{DRUMTYPE}")
   .gain(0.6*{VOLUME})
   .jux(rev)
   .room(sine.range(0.1,0.4))
