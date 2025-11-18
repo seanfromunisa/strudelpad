@@ -88,13 +88,7 @@ export default function StrudelDemo() {
 
     const [d2Checked, setD2Checked] = useState(true);
 
-    const [drumt1Checked, setDrumt1Checked] = useState(true);
-
-    const [drumt2Checked, setDrumt2Checked] = useState(false);
-
-    const [drumt3Checked, setDrumt3Checked] = useState(false);
-
-    const [drumt4Checked, setDrumt4Checked] = useState(false);
+    const [drumType, setDrumType] = useState("RolandTR808");
 
     useEffect(() => {
 
@@ -102,7 +96,7 @@ export default function StrudelDemo() {
             handlePlay();
         }
 
-    }, [volume, b1Checked, a1Checked, d1Checked, d2Checked])
+    }, [volume, b1Checked, a1Checked, d1Checked, d2Checked, drumType])
 
 useEffect(() => {
 
@@ -179,7 +173,8 @@ return (
                             d2Checked={d2Checked} setD2Checked={setD2Checked}
                         />
                         <RadioDJ
-
+                            onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
+                            onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
                         />
                     </div>
                 </div>
