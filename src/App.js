@@ -19,6 +19,7 @@ import CPM from './components/CPM';
 import RadioDJ from './components/RadioDJ';
 import SaveLoadButtons from './components/SaveLoadButtons';
 import InstrumentCheckLogic from './InstrumentCheckLogic';
+import ThemeSelect from './components/ThemeSelect';
 
 //Establishing globalEditor variable
 let globalEditor = null;
@@ -68,6 +69,25 @@ export default function StrudelDemo() {
     const [d2Checked, setD2Checked] = useState(true);
 
     const [drumType, setDrumType] = useState("RolandTR808");
+
+    const [pageTheme, setPageTheme] = useState("light");
+
+    //If a colour theme is selected using the ThemeSelect dropdown component, change the page colour theme
+    useEffect(() => {
+
+        if (theme === "light") {
+
+        }
+
+        if (theme === "dark") {
+
+        }
+
+        if (theme === "pink") {
+
+        }
+
+    }, [pageTheme])
 
     //JSON object saving function
     const saveState = () => {
@@ -172,6 +192,13 @@ return (
                     <div className="col-md-4">
                         <nav>
                             <div>
+                                <ThemeSelect
+                                    onLight={() => setPageTheme("light")}
+                                    onDark={() => setPageTheme("dark")}
+                                    onPink={() => setPageTheme("pink")}
+                                />
+                            </div>
+                            <div>
                                 <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
                             </div>
                             <br />
@@ -181,6 +208,7 @@ return (
                         </nav>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <div id="editor" />
