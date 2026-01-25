@@ -20,6 +20,7 @@ import RadioDJ from './components/RadioDJ';
 import SaveLoadButtons from './components/SaveLoadButtons';
 import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
 import ThemeSelect from './components/ThemeSelect';
+import TextEditor from './components/TextEditor';
 
 //Establishing globalEditor variable
 let globalEditor = null;
@@ -187,33 +188,12 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-7">
-                        <div className="accordion" id="accordionExample">
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="headingOne">
-                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Preprocess Text
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
-                                        <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="headingTwo">
-                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Strudel Player
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
-                                        <div id="editor" />
-                                        <div id="output" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="editor" />
+                        <div id="output" />
+
+                        <br />
+
+                        <TextEditor defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
 
                     <div className="col-md-3">
