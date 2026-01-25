@@ -18,7 +18,7 @@ import Volume from './components/Volume';
 import CPM from './components/CPM';
 import RadioDJ from './components/RadioDJ';
 import SaveLoadButtons from './components/SaveLoadButtons';
-import InstrumentCheckLogic from './InstrumentCheckLogic';
+import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
 import ThemeSelect from './components/ThemeSelect';
 
 //Establishing globalEditor variable
@@ -39,7 +39,7 @@ export default function StrudelDemo() {
         }
 
         //Replace variables in the song text to reflect the users instrument settings
-        outputText = InstrumentCheckLogic(outputText, volume, cpm, drumType, b1Checked, a1Checked, d1Checked, d2Checked);
+        outputText = instrumentCheckLogic(outputText, volume, cpm, drumType, b1Checked, a1Checked, d1Checked, d2Checked);
 
         //Having refactored all of the song text, process it into strudel and execute
         globalEditor.setCode(outputText);
@@ -75,15 +75,15 @@ export default function StrudelDemo() {
     //If a colour theme is selected using the ThemeSelect dropdown component, change the page colour theme
     useEffect(() => {
 
-        if (theme === "light") {
+        if (pageTheme === "light") {
 
         }
 
-        if (theme === "dark") {
+        if (pageTheme === "dark") {
 
         }
 
-        if (theme === "pink") {
+        if (pageTheme === "pink") {
 
         }
 
@@ -185,75 +185,77 @@ return (
         <main>
 
             <div className="container-fluid">
-                <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <div class="accordion" id="strudelAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                    Preprocess Text
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                                <div class="accordion-body">
-                                    <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
+                <div className="row">
+                    <div className="col-md-7">
+                        <div className="accordion" id="accordionExample">
+                            <div className="accordion-item">
+                                <h2 className="accordion-header" id="headingOne">
+                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Preprocess Text
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div className="accordion-body">
+                                        <PreprocessTextArea defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                    Strudel Player
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                                <div class="accordion-body">
-                                    <div id="editor" />
-                                    <div id="output" />
+                            <div className="accordion-item">
+                                <h2 className="accordion-header" id="headingTwo">
+                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Strudel Player
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div className="accordion-body">
+                                        <div id="editor" />
+                                        <div id="output" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="col-md-4" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <div className="row">
-                    </div>
-                    <div>
-                        <nav>
-                            <div>
-                                <ThemeSelect
-                                    onLight={() => setPageTheme("light")}
-                                    onDark={() => setPageTheme("dark")}
-                                    onPink={() => setPageTheme("pink")}
+                    <div className="col-md-3">
+                        <div>
+                            <nav>
+                                <div>
+                                    <ThemeSelect
+                                        onLight={() => setPageTheme("light")}
+                                        onDark={() => setPageTheme("dark")}
+                                        onPink={() => setPageTheme("pink")}
+                                    />
+                                </div>
+                                <br />
+                                <div>
+                                    <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
+                                </div>
+                                <br />
+                                <div>
+                                    <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
+                                </div>
+                                <br />
+                            </nav>
+
+                            <div className="row">
+                                <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
+                                <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
+                            </div>
+                            <br/>
+                            <div className="row">
+                                <DJControls
+                                    b1Checked={b1Checked} setB1Checked={setB1Checked}
+                                    a1Checked={a1Checked} setA1Checked={setA1Checked}
+                                    d1Checked={d1Checked} setD1Checked={setD1Checked}
+                                    d2Checked={d2Checked} setD2Checked={setD2Checked}
                                 />
                             </div>
-                            <div>
-                                <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
+                            <div className="row">
+                                <RadioDJ
+                                    onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
+                                    onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
+                                />
                             </div>
-                            <br />
-                            <div>
-                                <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
-                            </div>
-                        </nav>
-
-                        <div className="row">
-                            <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
-                            <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
-                        </div>
-                        <br/>
-                        <div className="row">
-                            <DJControls
-                                b1Checked={b1Checked} setB1Checked={setB1Checked}
-                                a1Checked={a1Checked} setA1Checked={setA1Checked}
-                                d1Checked={d1Checked} setD1Checked={setD1Checked}
-                                d2Checked={d2Checked} setD2Checked={setD2Checked}
-                            />
-                        </div>
-                        <div className="row">
-                            <RadioDJ
-                                onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
-                                onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
-                            />
                         </div>
                     </div>
                 </div>
