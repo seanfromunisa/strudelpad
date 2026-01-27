@@ -35,6 +35,7 @@ export default function StrudelDemo() {
 
         //Using stand in variable to represent songText. If songText is not established, use the default song text
         let outputText = songText
+
         if (outputText == null) {
             outputText = stranger_tune;
         }
@@ -188,15 +189,17 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-7">
-                        <div id="editor" />
-                        <div id="output" />
+                        <div className="row" style={{ maxHeight: '85vh', overflowY: 'auto' }}>
+                            <div id="editor" />
+                            <div id="output" />
+                        </div>
 
                         <br />
 
                         <TextEditor defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-md-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                         <div>
                             <nav>
                                 <div>

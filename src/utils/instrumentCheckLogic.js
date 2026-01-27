@@ -1,7 +1,4 @@
-export default function instrumentCheckLogic({ outputText, volume, cpm, drumType, b1Checked, a1Checked, d1Checked, d2Checked }) {
-    //
-    if (!outputText) return
-
+export default function instrumentCheckLogic(outputText, volume, cpm, drumType, b1Checked, a1Checked, d1Checked, d2Checked) {
     //Replace volume, cpm, and drum type variables across the song text with their set values
     outputText = outputText.replace(/{VOLUME}/g, volume);
     outputText = outputText.replace(/{CPM}/g, cpm);
