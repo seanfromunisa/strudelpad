@@ -1,4 +1,7 @@
 function ThemeSelect({ onLight, onDark, onPink }) {
+
+    console.log("how about this?")
+
     // Select the colour theme of the webpage
     return (
         <>

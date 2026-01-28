@@ -21,6 +21,8 @@ import SaveLoadButtons from './components/SaveLoadButtons';
 import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
 import ThemeSelect from './components/ThemeSelect';
 import TextEditor from './components/TextEditor';
+import BottomOffcanvas from './components/BottomOffcanvas';
+import Dropdown from './components/Dropdown';
 
 //Establishing globalEditor variable
 let globalEditor = null;
@@ -196,18 +198,15 @@ return (
 
                         <br />
 
-                        <TextEditor defaultValue={songText} onChange={(e) => setSongText(e.target.value)} />
+                        <BottomOffcanvas />
+                        <PreprocessTextArea />
                     </div>
 
                     <div className="col-md-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                         <div>
                             <nav>
                                 <div>
-                                    <ThemeSelect
-                                        onLight={() => setPageTheme("light")}
-                                        onDark={() => setPageTheme("dark")}
-                                        onPink={() => setPageTheme("pink")}
-                                    />
+                                    <Dropdown />
                                 </div>
                                 <br />
                                 <div>

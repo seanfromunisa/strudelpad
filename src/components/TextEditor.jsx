@@ -1,6 +1,9 @@
 import PreprocessTextArea from './PreprocessTextArea';
 
 function TextEditor({ songText, onChange }) {
+
+    console.log("working?");
+
     // Text field for editing the song text to be processed
     return (
         <>
