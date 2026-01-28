@@ -21,8 +21,6 @@ import SaveLoadButtons from './components/SaveLoadButtons';
 import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
 import ThemeSelect from './components/ThemeSelect';
 import TextEditor from './components/TextEditor';
-import BottomOffcanvas from './components/BottomOffcanvas';
-import Dropdown from './components/Dropdown';
 
 //Establishing globalEditor variable
 let globalEditor = null;
@@ -80,14 +78,16 @@ export default function StrudelDemo() {
     useEffect(() => {
 
         if (pageTheme === "light") {
-
+            console.log(pageTheme);
         }
 
         if (pageTheme === "dark") {
+            console.log(pageTheme);
 
         }
 
         if (pageTheme === "pink") {
+            console.log(pageTheme);
 
         }
 
@@ -176,8 +176,6 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
     }
     globalEditor.setCode(songText);
 }, [songText]);
@@ -198,15 +196,18 @@ return (
 
                         <br />
 
-                        <BottomOffcanvas />
-                        <PreprocessTextArea />
+                        <TextEditor songText={songText} onChange={(e) => setSongText(e.target.value)} />
                     </div>
 
                     <div className="col-md-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                         <div>
                             <nav>
                                 <div>
-                                    <Dropdown />
+                                    <ThemeSelect
+                                        onLight={() => setPageTheme("light")}
+                                        onDark={() => setPageTheme("dark")}
+                                        onPink={() => setPageTheme("pink")}
+                                    />
                                 </div>
                                 <br />
                                 <div>

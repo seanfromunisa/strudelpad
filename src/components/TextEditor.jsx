@@ -1,23 +1,30 @@
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import PreprocessTextArea from './PreprocessTextArea';
 
+//States and handlers for the offcanvas component
 function TextEditor({ songText, onChange }) {
+    const [show, setShow] = useState(false);
 
-    console.log("working?");
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-    // Text field for editing the song text to be processed
+    //The returned offcanvas component
     return (
         <>
-            <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Edit</button>
+            <Button variant="primary" onClick={handleShow}>
+                Edit
+            </Button>
 
-            <div className="offcanvas offcanvas-bottom" tabIndex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-                <div className="offcanvas-header">
-                    <h5 className="offcanvas-title" id="offcanvasBottomLabel">Preprocess Text</h5>
-                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div className="offcanvas-body small">
+            <Offcanvas show={show} onHide={handleClose} placement={'bottom'}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Preprocess Text</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
                     <PreprocessTextArea defaultValue={songText} onChange={onChange} />
-                </div>
-            </div>
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     );
 }
