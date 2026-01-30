@@ -163,24 +163,27 @@ useEffect(() => {
 
 //Body of the page
     return (
-    <div className={pageTheme}>
-        <h2 style={{ color: "hotpink", textAlign: "center", fontSize: "xx-large" }}>StrudelPad</h2>
+        <div className={pageTheme}>
+            <div className="row" style={{ color: "hotpink", paddingTop: 20, textAlign: "center", fontSize: 10 }}>
+                <h2>StrudelPad</h2>
+            </div>
         <main>
 
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-7">
-                        <div className="row" style={{ maxHeight: '85vh', overflowY: 'auto' }}>
+                <div className="container-fluid">
+                    <div className="row" style={{ padding: 20 }}>
+                        <div className="col-md-7" style={{ paddingRight: 20 }}>
+                        <div className="row" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                             <div id="editor" />
                             <div id="output" />
                         </div>
 
-                        <br />
-
-                        <TextEditor songText={songText} onChange={(e) => setSongText(e.target.value)} />
+                            <br />
+                            <div className="row" style={{ padding: 10, paddingLeft: 500, paddingRight: 500 }}>
+                                <TextEditor songText={songText} onChange={(e) => setSongText(e.target.value)} />
+                            </div>
                     </div>
 
-                    <div className="col-md-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+                        <div className="col-md-4" style={{ maxHeight: '85vh', overflowY: 'auto', overflowX: 'hidden', padding: 30, paddingLeft: 40 }}>
                         <div>
                             <nav>
                                 <div>
