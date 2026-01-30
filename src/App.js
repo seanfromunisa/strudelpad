@@ -8,6 +8,7 @@ import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
+import { light_style, dark_style, pink_style } from './utils/pageStyles';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import DJControls from './components/DJ_Controls';
 import PlayButtons from './components/PlayButtons';
@@ -72,26 +73,7 @@ export default function StrudelDemo() {
 
     const [drumType, setDrumType] = useState("RolandTR808");
 
-    const [pageTheme, setPageTheme] = useState("light");
-
-    //If a colour theme is selected using the ThemeSelect dropdown component, change the page colour theme
-    useEffect(() => {
-
-        if (pageTheme === "light") {
-            console.log(pageTheme);
-        }
-
-        if (pageTheme === "dark") {
-            console.log(pageTheme);
-
-        }
-
-        if (pageTheme === "pink") {
-            console.log(pageTheme);
-
-        }
-
-    }, [pageTheme])
+    const [pageTheme, setPageTheme] = useState(light_style);
 
     //JSON object saving function
     const saveState = () => {
@@ -181,8 +163,8 @@ useEffect(() => {
 }, [songText]);
 
 //Body of the page
-return (
-    <div>
+    return (
+    <div style={pageTheme}>
         <h2 style={{ color: "hotpink", textAlign: "center", fontSize: "xx-large" }}>StrudelPad</h2>
         <main>
 
@@ -204,9 +186,9 @@ return (
                             <nav>
                                 <div>
                                     <ThemeSelect
-                                        onLight={() => setPageTheme("light")}
-                                        onDark={() => setPageTheme("dark")}
-                                        onPink={() => setPageTheme("pink")}
+                                        onLight={() => setPageTheme(light_style)}
+                                        onDark={() => setPageTheme(dark_style)}
+                                        onPink={() => setPageTheme(pink_style)}
                                     />
                                 </div>
                                 <br />
