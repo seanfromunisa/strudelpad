@@ -10,3 +10,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.light_style {
+    color: black;
+    background-color: white;
+}
+
+.dark_style {
+    color: white;
+    background-color: black;
+}
+
+.pink_style {
+    color: white;
+    background-color: lightpink;
+}

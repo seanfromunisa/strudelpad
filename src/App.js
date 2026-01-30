@@ -8,7 +8,6 @@ import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
-import { light_style, dark_style, pink_style } from './utils/pageStyles';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import DJControls from './components/DJ_Controls';
 import PlayButtons from './components/PlayButtons';
@@ -73,7 +72,7 @@ export default function StrudelDemo() {
 
     const [drumType, setDrumType] = useState("RolandTR808");
 
-    const [pageTheme, setPageTheme] = useState(light_style);
+    const [pageTheme, setPageTheme] = useState("light_style");
 
     //JSON object saving function
     const saveState = () => {
@@ -164,7 +163,7 @@ useEffect(() => {
 
 //Body of the page
     return (
-    <div style={pageTheme}>
+    <div className={pageTheme}>
         <h2 style={{ color: "hotpink", textAlign: "center", fontSize: "xx-large" }}>StrudelPad</h2>
         <main>
 
@@ -186,9 +185,9 @@ useEffect(() => {
                             <nav>
                                 <div>
                                     <ThemeSelect
-                                        onLight={() => setPageTheme(light_style)}
-                                        onDark={() => setPageTheme(dark_style)}
-                                        onPink={() => setPageTheme(pink_style)}
+                                        onLight={() => setPageTheme('light_style')}
+                                        onDark={() => setPageTheme('dark_style')}
+                                        onPink={() => setPageTheme('pink_style')}
                                     />
                                 </div>
                                 <br />
