@@ -22,6 +22,8 @@ import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
 import loadReflect from './utils/loadReflect.js';
 import ThemeSelect from './components/ThemeSelect';
 import TextEditor from './components/TextEditor';
+import saveCurrentState from './utils/saveCurrentState.js';
+import loadCurrentState from './utils/loadCurrentState.js';
 
 //Establishing globalEditor variable
 let globalEditor = null;
@@ -80,33 +82,18 @@ export default function StrudelDemo() {
     //JSON object saving function
     const saveState = () => {
 
-        //Create object holding all current variable values
-        const currentState = {
-            saveSongText: songText,
-            saveCpm: cpm,
-            saveB1Checked: b1Checked,
-            saveA1Checked: a1Checked,
-            saveD1Checked: d1Checked,
-            saveD2Checked: d2Checked,
-            saveDrumType: drumType,
-        };
-
-        //Stringify this object using JSON
-        const stateJSON = JSON.stringify(currentState);
-
-        //Store this JSON data into local storage
-        localStorage.setItem(stateName, stateJSON);
+        // Save the current state using the saveCurrentState function
+        saveCurrentState(songText, cpm, b1Checked, a1Checked, d1Checked, d2Checked, drumType, stateName);
     }
 
     //JSON object loading function
     const loadState = () => {
 
         //Transfer saved object data into placeholder variable
-        let data = localStorage.getItem(stateName);
+        let loadedData = loadCurrentState(stateName);
 
         //If there is an object to speak of, reconstruct the data and set the appropriate variables
-        if (data !== undefined) {
-            const loadedData = JSON.parse(data);
+        if (loadedData !== undefined) {
             setSongText(loadedData.saveSongText);
             setCpm(loadedData.saveCpm);
             setB1Checked(loadedData.saveB1Checked);
@@ -114,9 +101,6 @@ export default function StrudelDemo() {
             setD1Checked(loadedData.saveD1Checked);
             setD2Checked(loadedData.saveD2Checked);
             setDrumType(loadedData.saveDrumType);
-
-            //According to the loaded data, reflect values visually in the components
-            loadReflect(loadedData);
         }
     }
 
