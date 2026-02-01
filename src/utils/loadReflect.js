@@ -20,13 +20,25 @@ export default function loadReflect(loadedData) {
     if (loadedData.saveB1Checked === true) {
         document.getElementById("b1").checked = true;
     }
+    else {
+        document.getElementById("b1").checked = false;
+    }
     if (loadedData.saveA1Checked === true) {
         document.getElementById("a1").checked = true;
+    }
+    else {
+        document.getElementById("a1").checked = false;
     }
     if (loadedData.saveD1Checked === true) {
         document.getElementById("d1").checked = true;
     }
+    else {
+        document.getElementById("d1").checked = false;
+    }
     if (loadedData.saveD2Checked === true) {
         document.getElementById("d2").checked = true;
+    }
+    else {
+        document.getElementById("d2").checked = false;
     }
 }
