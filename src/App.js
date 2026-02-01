@@ -19,6 +19,7 @@ import CPM from './components/CPM';
 import RadioDJ from './components/RadioDJ';
 import SaveLoadButtons from './components/SaveLoadButtons';
 import instrumentCheckLogic from './utils/instrumentCheckLogic.js';
+import loadReflect from './utils/loadReflect.js';
 import ThemeSelect from './components/ThemeSelect';
 import TextEditor from './components/TextEditor';
 
@@ -76,7 +77,6 @@ export default function StrudelDemo() {
 
     //JSON object saving function
     const saveState = () => {
-        console.log('save pressed');
 
         //Create object holding all current variable values
         const currentState = {
@@ -92,7 +92,6 @@ export default function StrudelDemo() {
 
         //Stringify this object using JSON
         const stateJSON = JSON.stringify(currentState);
-        console.log(stateJSON);
 
         //Store this JSON data into local storage
         localStorage.setItem("savedState", stateJSON);
@@ -100,15 +99,12 @@ export default function StrudelDemo() {
 
     //JSON object loading function
     const loadState = () => {
-        console.log('load pressed');
 
         //Transfer saved object data into placeholder variable
         let data = localStorage.getItem("savedState");
-        console.log(data);
 
         //If there is an object to speak of, reconstruct the data and set the appropriate variables
         if (data !== undefined) {
-            console.log('working?');
             const loadedData = JSON.parse(data);
             setSongText(loadedData.saveSongText);
             setVolume(loadedData.saveVolume);
@@ -118,6 +114,9 @@ export default function StrudelDemo() {
             setD1Checked(loadedData.saveD1Checked);
             setD2Checked(loadedData.saveD2Checked);
             setDrumType(loadedData.saveDrumType);
+
+            //According to the loaded data, reflect values visually in the components
+            loadReflect(loadedData);
         }
     }
 
