@@ -1,6 +1,6 @@
 import { add } from "@strudel/core";
 
-export default function instrumentCheckLogic(loadedData) {
+export default function loadReflect(loadedData) {
     //For each visual control component, change its value to reflect the loaded data
     document.getElementById("cpm_text_input").value = loadedData.saveCpm;
 
