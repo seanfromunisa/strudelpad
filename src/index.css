@@ -25,3 +25,7 @@ code {
     color: white;
     background-color: lightpink;
 }
+
+.btn-group {
+    padding-right: 5px;
+}

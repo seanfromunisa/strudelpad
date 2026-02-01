@@ -76,6 +76,7 @@ export default function StrudelDemo() {
 
     //JSON object saving function
     const saveState = () => {
+        console.log('save pressed');
 
         //Create object holding all current variable values
         const currentState = {
@@ -87,23 +88,27 @@ export default function StrudelDemo() {
             saveD1Checked: d1Checked,
             saveD2Checked: d2Checked,
             saveDrumType: drumType,
-        }
+        };
 
-        //Store these into local storage
-        localStorage.setItem(
-            "savedState",
-            JSON.stringify(this.currentState)
-        );
+        //Stringify this object using JSON
+        const stateJSON = JSON.stringify(currentState);
+        console.log(stateJSON);
+
+        //Store this JSON data into local storage
+        localStorage.setItem("savedState", stateJSON);
     }
 
     //JSON object loading function
     const loadState = () => {
+        console.log('load pressed');
 
         //Transfer saved object data into placeholder variable
         let data = localStorage.getItem("savedState");
+        console.log(data);
 
         //If there is an object to speak of, reconstruct the data and set the appropriate variables
         if (data !== undefined) {
+            console.log('working?');
             const loadedData = JSON.parse(data);
             setSongText(loadedData.saveSongText);
             setVolume(loadedData.saveVolume);
@@ -165,7 +170,7 @@ useEffect(() => {
     return (
         <div className={pageTheme}>
             <div className="row" style={{ color: "hotpink", paddingTop: 20, textAlign: "center", fontSize: 10 }}>
-                <h2>StrudelPad</h2>
+                <h1>StrudelPad</h1>
             </div>
         <main>
 
