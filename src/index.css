@@ -29,3 +29,21 @@ code {
 .btn-group {
     padding-right: 5px;
 }
+
+.pad-bot {
+    padding-bottom: 20px;
+}
+
+.big-pad {
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-pad {
+    padding-bottom: 200px;
+}
+
+.bot-pad {
+    padding-top: 200px;
+}

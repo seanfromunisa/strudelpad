@@ -83,7 +83,6 @@ export default function StrudelDemo() {
         //Create object holding all current variable values
         const currentState = {
             saveSongText: songText,
-            saveVolume: volume,
             saveCpm: cpm,
             saveB1Checked: b1Checked,
             saveA1Checked: a1Checked,
@@ -109,7 +108,6 @@ export default function StrudelDemo() {
         if (data !== undefined) {
             const loadedData = JSON.parse(data);
             setSongText(loadedData.saveSongText);
-            setVolume(loadedData.saveVolume);
             setCpm(loadedData.saveCpm);
             setB1Checked(loadedData.saveB1Checked);
             setA1Checked(loadedData.saveA1Checked);
@@ -190,49 +188,48 @@ useEffect(() => {
                     </div>
 
                         <div className="col-md-4" style={{ maxHeight: '85vh', overflowY: 'auto', overflowX: 'hidden', padding: 30, paddingLeft: 40 }}>
-                        <div>
-                            <nav>
-                                <div>
+                            <div>
+                                    <div className="top-pad">
                                     <ThemeSelect
                                         onLight={() => setPageTheme('light_style')}
                                         onDark={() => setPageTheme('dark_style')}
                                         onPink={() => setPageTheme('pink_style')}
                                     />
                                 </div>
-                                <br />
-                                    <div>
-                                    <SaveLoadButtons defaultValue={stateName} onChange={(e) => setStateName(e.target.value)} onSave={() => saveState()} onLoad={() => loadState()} />
-                                </div>
-                                <br />
+                                    <div className="pad-bot">
+                                        <SaveLoadButtons defaultValue={stateName} onChange={(e) => setStateName(e.target.value)} onSave={() => saveState()} onLoad={() => loadState()} />
+                                    </div>
+                            </div>
+                            <div className="big-pad">
+                                    <div className="row">
+                                        <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
+                                    </div>
+                                    <div className="row">
+                                        <DJControls
+                                            b1Checked={b1Checked} setB1Checked={setB1Checked}
+                                            a1Checked={a1Checked} setA1Checked={setA1Checked}
+                                            d1Checked={d1Checked} setD1Checked={setD1Checked}
+                                            d2Checked={d2Checked} setD2Checked={setD2Checked}
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <RadioDJ
+                                            onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
+                                            onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
+                                        />
+                                    </div>
+                            </div>
+                            <div className="bot-pad">
                                 <div>
-                                    <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
+                                    <div className="pad-bot">
+                                        <PlayButtons onPlay={() => { setState("play"); handlePlay() }} onStop={() => { setState("stop"); handleStop() }} />
+                                    </div>
+                                    <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
                                 </div>
-                                <br />
-                            </nav>
-
-                            <div className="row">
-                                <CPM defaultValue={cpm} onChange={(e) => setCpm(e.target.value)} />
-                                <Volume defaultVolume={volume} onVolumeChange={(e) => setVolume(e.target.value)} />
-                            </div>
-                            <br/>
-                            <div className="row">
-                                <DJControls
-                                    b1Checked={b1Checked} setB1Checked={setB1Checked}
-                                    a1Checked={a1Checked} setA1Checked={setA1Checked}
-                                    d1Checked={d1Checked} setD1Checked={setD1Checked}
-                                    d2Checked={d2Checked} setD2Checked={setD2Checked}
-                                />
-                            </div>
-                            <div className="row">
-                                <RadioDJ
-                                    onType1={() => setDrumType("RolandTR808")} onType2={() => setDrumType("AkaiLinn")}
-                                    onType3={() => setDrumType("RhythmAce")} onType4={() => setDrumType("ViscoSpaceDrum")}
-                                />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <canvas id="roll"></canvas>
         </main >
     </div >

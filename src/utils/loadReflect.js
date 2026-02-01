@@ -2,7 +2,6 @@ import { add } from "@strudel/core";
 
 export default function instrumentCheckLogic(loadedData) {
     //For each visual control component, change its value to reflect the loaded data
-    document.getElementById("volume_range").value = loadedData.saveVolume;
     document.getElementById("cpm_text_input").value = loadedData.saveCpm;
 
     if (loadedData.saveDrumType === "RolandTR808") {
