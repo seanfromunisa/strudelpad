@@ -2,7 +2,7 @@ import loadReflect from './loadReflect.js';
 
 export default function loadCurrentState(stateName) {
 
-    //
+    //Undefined loadedData variable to return in case no data is found
     let loadedData = undefined;
 
     //Transfer saved object data into placeholder variable

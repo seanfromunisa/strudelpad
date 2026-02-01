@@ -1,12 +1,12 @@
 ### Controls
 
-# Processing Text
-The text box in the top left is the full processed text that becomes the music the Strudel interface interperets and plays.
+# Edit button
+The text box this opens on the bottom of the screen is the full processed text that becomes the music the Strudel interface interperets and plays.
 
 Any changes to this will be made instantly to the running program, though do be cautious as this text also holds the variables allowing the other controls' functionality.
 
 # Save and Load
-These buttons are intended to Save all current settings as a JSON object and be able to load them thereafter from local storage, but the functionality is subpar at this time.
+These buttons save all current settings as JSON objects and are able to load them thereafter from local storage, labelled using user inputs.
 
 # Play and Stop
 Play and Stop are somewhat self explanitory, allowing the user to play and stop the music. Some control changes will only execute after playing the music.
@@ -31,7 +31,12 @@ In the processed text, under the Bass and Arp are Spectre visuals, showing music
 ### Video Link
 Here is the demo of the page
 
-https://youtu.be/MvT3qZKz62c
+https://youtu.be/fsqRggFc9jI
+
+
+
+### Website Quirks
+At this time, all bugs have been fixed, allowing a seamless user experience.
 
 
 
