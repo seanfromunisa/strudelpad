@@ -75,6 +75,8 @@ export default function StrudelDemo() {
 
     const [pageTheme, setPageTheme] = useState("light_style");
 
+    const [stateName, setStateName] = useState("");
+
     //JSON object saving function
     const saveState = () => {
 
@@ -94,14 +96,14 @@ export default function StrudelDemo() {
         const stateJSON = JSON.stringify(currentState);
 
         //Store this JSON data into local storage
-        localStorage.setItem("savedState", stateJSON);
+        localStorage.setItem(stateName, stateJSON);
     }
 
     //JSON object loading function
     const loadState = () => {
 
         //Transfer saved object data into placeholder variable
-        let data = localStorage.getItem("savedState");
+        let data = localStorage.getItem(stateName);
 
         //If there is an object to speak of, reconstruct the data and set the appropriate variables
         if (data !== undefined) {
@@ -198,8 +200,8 @@ useEffect(() => {
                                     />
                                 </div>
                                 <br />
-                                <div>
-                                    <SaveLoadButtons onSave={() => saveState()} onLoad={() => loadState()} />
+                                    <div>
+                                    <SaveLoadButtons defaultValue={stateName} onChange={(e) => setStateName(e.target.value)} onSave={() => saveState()} onLoad={() => loadState()} />
                                 </div>
                                 <br />
                                 <div>

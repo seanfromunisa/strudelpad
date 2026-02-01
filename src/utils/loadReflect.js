@@ -18,7 +18,6 @@ export default function instrumentCheckLogic(loadedData) {
         document.getElementById("radioDefault4").checked = true;
     }
 
-    console.log(loadedData.saveB1Checked)
     if (loadedData.saveB1Checked === true) {
         document.getElementById("b1").checked = true;
     }
